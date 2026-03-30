@@ -1,0 +1,20 @@
+def TreeConstructor(strArr):
+    parents = {}
+    children = {}
+
+    for pair in strArr:
+        nodes = pair.strip("()").split(",")
+        child, parent = nodes[0], nodes[1]
+        if parent in parents:
+            parents[parent].append(child)
+            if len(parents[parent]) > 2:
+                return "false"
+        else:
+            parents[parent] = [child]
+
+        if child in children:
+            return "false"
+        else:
+            children[child] = parent
+
+    return "true"
