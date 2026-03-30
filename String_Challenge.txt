@@ -1,0 +1,20 @@
+def MatchingCharacters(strParam):
+    positions = {}
+    for i, char in enumerate(strParam):
+        if char not in positions:
+            positions[char] = [i, i] # Store [first_index, last_index]
+        else:
+            positions[char][1] = i # Update last_index
+
+    max_unique = 0
+    
+    for char in positions:
+        first, last = positions[char]
+        if first != last:
+            substring = strParam[first + 1 : last]
+            unique_count = len(set(substring))
+            
+            if unique_count > max_unique:
+                max_unique = unique_count
+                
+    return max_unique
